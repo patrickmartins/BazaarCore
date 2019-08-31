@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>PM.BazaarCore.Infrastructure.CrossCutting.AspNetUtils</AssemblyName>
+    <RootNamespace>PM.BazaarCore.Infrastructure.CrossCutting.AspNetUtils</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PM.Bazaar.Infrastructure.CrossCutting.Identity\PM.BazaarCore.Infrastructure.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\PM.BazaarCore.Domain.Core\PM.BazaarCore.Domain.Core.csproj" />
+  </ItemGroup>
+
+</Project>

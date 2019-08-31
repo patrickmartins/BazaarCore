@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Validations\" />
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PM.Bazaar.Infrastructure.CrossCutting.Configuration\PM.BazaarCore.Infrastructure.CrossCutting.Configuration.csproj" />
+    <ProjectReference Include="..\PM.BazaarCore.Domain.Core\PM.BazaarCore.Domain.Core.csproj" />
+  </ItemGroup>
+
+</Project>

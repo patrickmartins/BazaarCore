@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PM.Bazaar.Infrastructure.CrossCutting.Identity\PM.BazaarCore.Infrastructure.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\PM.Bazaar.Infrastructure.Data\PM.BazaarCore.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\PM.BazaarCore.Domain\PM.BazaarCore.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

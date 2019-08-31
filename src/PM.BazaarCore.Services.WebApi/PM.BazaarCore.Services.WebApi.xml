@@ -1,0 +1,444 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PM.BazaarCore.Services.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:PM.BazaarCore.Services.WebApi.Controllers.AccountController.MyAccount">
+            <summary>
+            Retorna as informações do usuário atualmente logado
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PM.BazaarCore.Services.WebApi.Controllers.AccountController.Register(PM.BazaarCore.Services.WebApi.Models.RegisterAccountModel)">
+            <summary>
+            Cria uma nova conta de usuário
+            </summary>
+            <param name="accountModel">Dados de registro de um novo usuário</param>
+        </member>
+        <member name="M:PM.BazaarCore.Services.WebApi.Controllers.AccountController.Login(PM.BazaarCore.Infrastructure.CrossCutting.Identity.Interfaces.IJwtAuthService,PM.BazaarCore.Services.WebApi.Models.LoginModel)">
+            <summary>
+            Faz o login com usuário e senha informados
+            </summary>
+            <param name="authService"></param>
+            <param name="loginModel">Dados de login de um usuário</param>
+        </member>
+        <member name="M:PM.BazaarCore.Services.WebApi.Controllers.AccountController.Logout(PM.BazaarCore.Infrastructure.CrossCutting.Identity.Interfaces.IJwtAuthService)">
+            <summary>
+            Faz o logout do usuário atualmente logado
+            </summary>
+        </member>
+        <member name="M:PM.BazaarCore.Services.WebApi.Controllers.AccountController.ChangeAvatar(System.Guid)">
+            <summary>
+            Altera a imagem de perfil do usuário atualmente logado
+            </summary>
+            <param name="idImage">Identificador da imagem</param>
+        </member>
+        <member name="M:PM.BazaarCore.Services.WebApi.Controllers.AccountController.ChangePassword(PM.BazaarCore.Services.WebApi.Models.ChangePasswordModel)">
+            <summary>
+            Altera a senha de acesso do usuário atualmente logado
+            </summary>
+            <param name="passwordModel">Dados para troca de senha de um usuário</param>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.AdvertiserDetailedModel">
+            <summary>
+            Dados detalhados de um usuário
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdvertiserDetailedModel.Name">
+            <summary>
+            Nome do usuário
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdvertiserDetailedModel.LastName">
+            <summary>
+            Sobrenome do usuário
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdvertiserDetailedModel.Email">
+            <summary>
+            Email do usuários
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdvertiserDetailedModel.Avatar">
+            <summary>
+            Identificador da imagem de perfil do usuário
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.AdvertiserBasicModel">
+            <summary>
+            Dados básicos de um usuário
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdvertiserBasicModel.Name">
+            <summary>
+            Nome do usuário
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdvertiserBasicModel.Avatar">
+            <summary>
+            Identificador da imagem de perfil do usuário
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.ChangePasswordModel">
+            <summary>
+            Dados para troca de senha de um usuário
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.ChangePasswordModel.CurrentPassword">
+            <summary>
+            Senha atual
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.ChangePasswordModel.Password">
+            <summary>
+            Nova senha
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.ChangePasswordModel.ConfirmPassword">
+            <summary>
+            Confirmação da senha
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.LoginModel">
+            <summary>
+            Dados de login de um usuário
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.LoginModel.Email">
+            <summary>
+            Email do usuário
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.LoginModel.Password">
+            <summary>
+            Senha do usuário
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.RegisterAccountModel">
+            <summary>
+            Dados de registro de um novo usuário
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAccountModel.Name">
+            <summary>
+            Nome
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAccountModel.LastName">
+            <summary>
+            Sobrenome
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAccountModel.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAccountModel.Password">
+            <summary>
+            Senha
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAccountModel.ConfirmPassword">
+            <summary>
+            Confirmação da senha
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.AdBasicModel">
+            <summary>
+            Dados básicos de um anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdBasicModel.Id">
+            <summary>
+            Identificador do anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdBasicModel.Title">
+            <summary>
+            Título do anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdBasicModel.IdCategory">
+            <summary>
+            Identificador da categoria do anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdBasicModel.Price">
+            <summary>
+            Preço do produto anunciado
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdBasicModel.Picture">
+            <summary>
+            Identificador da imagem do produto anunciado
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.SearchAdModel">
+            <summary>
+            Dados com filtros de pesquisa de anúncios
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.SearchAdModel.Categories">
+            <summary>
+            Categorias das publicações
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.SearchAdModel.MaxPrice">
+            <summary>
+            Preço máximo dos produtos anunciados
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.SearchAdModel.MinPrice">
+            <summary>
+            Preço minimo dos produtos anunciados
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.SearchAdModel.Order">
+            <summary>
+            Tipo de ordenação dos anúncios
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.SearchAdModel.Page">
+            <summary>
+            Página da busca
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.SearchAdModel.KeywordSearch">
+            <summary>
+            Palavra chave de busca
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.SearchAdModel.PageSize">
+            <summary>
+            Número de anúncios por página
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.AdDetailedModel">
+            <summary>
+            Dados detalhados de um anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdDetailedModel.Date">
+            <summary>
+            Data de publicação do anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdDetailedModel.Title">
+            <summary>
+            Título do anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdDetailedModel.Description">
+            <summary>
+            Descrição do produto anunciado
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdDetailedModel.IdCategory">
+            <summary>
+            Identificador da categoria do anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdDetailedModel.Price">
+            <summary>
+            Preço do produto anunciado
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdDetailedModel.Advertiser">
+            <summary>
+            Dados do anunciante
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdDetailedModel.Pictures">
+            <summary>
+            Array com os identificadores das imagens do produto
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.AdDetailedModel.Questions">
+            <summary>
+            Dados das perguntas publicadas
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.RegisterAdModel">
+            <summary>
+            Dados para publicação de um novo anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAdModel.Title">
+            <summary>
+            Título do anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAdModel.Description">
+            <summary>
+            Descrição do produto a ser anunciado
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAdModel.IdCategory">
+            <summary>
+            Identificador da categoria do anúncio
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAdModel.Price">
+            <summary>
+            Preço do produto a ser anunciado
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterAdModel.Pictures">
+            <summary>
+            Array com os identificadore das imagens do produto
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.CategoryModel">
+            <summary>
+            Dados de uma categoria
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.CategoryModel.Id">
+            <summary>
+            Identificador da categoria
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.CategoryModel.Name">
+            <summary>
+            Nome da categoria
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.QuestionModel">
+            <summary>
+            Dados de uma pergunta
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.QuestionModel.Id">
+            <summary>
+            Identificador da pergunta
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.QuestionModel.Description">
+            <summary>
+            Descrição da pergunta
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.QuestionModel.Date">
+            <summary>
+            Data de publicação da pergunta
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.QuestionModel.User">
+            <summary>
+            Dados do usuário que perguntou
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.QuestionModel.Response">
+            <summary>
+            Dados da resposta do anunciante
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.RegisterQuestionModel">
+            <summary>
+            Dados para publicação de uma nova pegunta
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterQuestionModel.Description">
+            <summary>
+            Descrição da pergunta
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.ResponseModel">
+            <summary>
+            Dados de uma resposta
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.ResponseModel.Description">
+            <summary>
+            Descrição da resposta
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.ResponseModel.Date">
+            <summary>
+            Data de publicação da resposta
+            </summary>
+        </member>
+        <member name="T:PM.BazaarCore.Services.WebApi.Models.RegisterResponseModel">
+            <summary>
+            Dados de publicação de uma nova resposta
+            </summary>
+        </member>
+        <member name="P:PM.BazaarCore.Services.WebApi.Models.RegisterResponseModel.Description">
+            <summary>
+            Descrição da resposta
+            </summary>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.AdController.Search(PM.BazaarCore.Services.WebApi.Models.SearchAdModel)">
+            <summary>
+            Busca os anúncios que correspondam aos filtros informados
+            </summary>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.AdController.PublishAd(PM.BazaarCore.Services.WebApi.Models.RegisterAdModel)">
+            <summary>
+            Publica um novo anúncio
+            </summary>
+            <param name="adModel">Dados para publicação de um novo anúncio</param>
+            <returns></returns>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.AdController.Ask(System.Guid,PM.BazaarCore.Services.WebApi.Models.RegisterQuestionModel)">
+            <summary>
+            Publica uma nova pergunta em um anúncio
+            </summary>
+            <param name="idAd">Identificador do anúncio</param>
+            <param name="questionModel">Dados para publicação de uma nova pegunta</param>
+            <returns></returns>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.AdController.Answer(System.Guid,System.Guid,PM.BazaarCore.Services.WebApi.Models.RegisterResponseModel)">
+            <summary>
+            Publica uma nova resposta para uma pergunta 
+            </summary>
+            <param name="idAd">Identificador do anúncio</param>
+            <param name="idQuestion">Identificador da pergunta</param>
+            <param name="responseModel">Dados de publicação de uma nova resposta</param>
+            <returns></returns>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.AdController.GetById(System.Guid)">
+            <summary>
+            Obtém os dados detalhados de um anúncio
+            </summary>
+            <param name="id">Identificador do anúncio</param>
+            <returns></returns>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.AdController.MostRecentAsync(System.Int32)">
+            <summary>
+            Obtém os anúncios mais recentes publicados
+            </summary>
+            <param name="number">Número máximo de anúncios</param>
+            <returns></returns>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.CategoryController.AllCategories">
+            <summary>
+            Retorna todas as categorias cadastradas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.ImageController.GetById(System.Guid)">
+            <summary>
+            Obtém uma imagem publicada
+            </summary>
+            <param name="id">Identificador da imagem</param>
+            <returns></returns>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.ImageController.SaveAvatarAsync(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Faz o upload de um nova imagem de perfil de usuário
+            </summary>
+            <param name="file">Arquivo de imagem</param>
+            <returns>Identificador da nova imagem</returns>
+        </member>
+        <member name="M:PM.Bazaar.Services.WebApi.Controllers.ImageController.SavePictureAsync(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Faz o upload de um nova imagem de anúncio
+            </summary>
+            <param name="file">Arquivo de imagem</param>
+            <returns>Identificador da nova imagem</returns>
+        </member>
+    </members>
+</doc>
