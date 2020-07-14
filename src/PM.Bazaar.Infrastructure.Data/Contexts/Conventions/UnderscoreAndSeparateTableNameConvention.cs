@@ -9,7 +9,7 @@ namespace PM.BazaarCore.Infrastructure.Data.Contexts.Conventions
     {
         public void Apply(IMutableEntityType entity)
         {
-            entity.Relational().TableName = Regex.Replace(entity.Relational().TableName, ".[A-Z]", m => m.Value[0] + "_" + m.Value[1]).ToLower();
+            entity.SetTableName(Regex.Replace(entity.GetTableName(), ".[A-Z]", m => m.Value[0] + "_" + m.Value[1]).ToLower());
         }
     }
 }

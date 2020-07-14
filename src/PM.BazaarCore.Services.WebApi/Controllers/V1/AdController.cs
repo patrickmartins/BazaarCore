@@ -23,7 +23,7 @@ namespace PM.Bazaar.Services.WebApi.Controllers
     {
         private readonly IAdvertisingApplicationService _service;
 
-        public AdController(IAdvertisingApplicationService service, IMapper mapper, IHostingEnvironment env) : base(mapper, env)
+        public AdController(IAdvertisingApplicationService service, IMapper mapper, IWebHostEnvironment env) : base(mapper, env)
         {
             _service = service;
         }
@@ -65,7 +65,7 @@ namespace PM.Bazaar.Services.WebApi.Controllers
         public async Task<ActionResult> PublishAd([FromBody] RegisterAdModel adModel)
         {
             var ad = Map<Ad>(adModel);
-                        
+
             var result = await _service.PublishAdAsync(ad);
 
             if (!result.Sucess)
@@ -152,7 +152,7 @@ namespace PM.Bazaar.Services.WebApi.Controllers
         public async Task<ActionResult> MostRecentAsync(int number)
         {
             var ads = await _service.SearchAdsAsync(keywordSearch: "", pageSize: number);
-            
+
             if (!ads.Any())
                 return NoContent();
 

@@ -17,7 +17,7 @@ namespace PM.Bazaar.Services.WebApi.Controllers
     public class CategoryController : BaseController
     {
         private readonly ICategoryApplicationService _service;
-        public CategoryController(ICategoryApplicationService service, IMapper mapper, IHostingEnvironment env) : base(mapper, env)
+        public CategoryController(ICategoryApplicationService service, IMapper mapper, IWebHostEnvironment env) : base(mapper, env)
         {
             _service = service;
         }

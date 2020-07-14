@@ -33,7 +33,7 @@ namespace PM.BazaarCore.Services.WebApi.Models
     /// <summary>
     /// Dados básicos de um usuário
     /// </summary>
-    public class AdvertiserBasicModel 
+    public class AdvertiserBasicModel
     {
         /// <summary>
         /// Nome do usuário
@@ -120,7 +120,7 @@ namespace PM.BazaarCore.Services.WebApi.Models
         [Required(ErrorMessage = "O sobrenome é obrigatório")]
         [StringLength(30, ErrorMessage = "O sobrenome deve conter no minímo 5 e no máximo 30 caracteres", MinimumLength = 5)]
         public string LastName { get; set; }
-        
+
         /// <summary>
         /// Email
         /// </summary>

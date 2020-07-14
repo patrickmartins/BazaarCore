@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using PM.BazaarCore.Infrastructure.Data.Contexts.Conventions;
 using PM.BazaarCore.Infrastructure.Data.Extensions;
 using PM.BazaarCore.Infrastructure.Data.Mappings;
-using System.IO;
 
 namespace PM.BazaarCore.Infrastructure.Data.Contexts
 {

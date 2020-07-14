@@ -12,7 +12,7 @@ namespace PM.BazaarCore.Infrastructure.Data.Contexts.Conventions
             var properties = entity.GetProperties();
 
             foreach(var property in properties)
-                property.Relational().ColumnName = Regex.Replace(property.Relational().ColumnName, ".[A-Z]", m => m.Value[0] + "_" + m.Value[1]).ToLower();
+                property.SetColumnName(Regex.Replace(property.GetColumnName(), ".[A-Z]", m => m.Value[0] + "_" + m.Value[1]).ToLower());
         }
     }
 }

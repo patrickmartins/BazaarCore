@@ -7,9 +7,9 @@ namespace PM.BazaarCore.Services.WebApi.Controllers.Common
     public class BaseController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
 
-        public BaseController(IMapper mapper, IHostingEnvironment env)
+        public BaseController(IMapper mapper, IWebHostEnvironment env)
         {
             _mapper = mapper;
             _env = env;

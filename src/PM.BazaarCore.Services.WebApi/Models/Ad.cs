@@ -83,7 +83,7 @@ namespace PM.BazaarCore.Services.WebApi.Models
         {
             KeywordSearch = string.Empty;
             Categories = new Guid[0];
-        }        
+        }
     }
 
     /// <summary>

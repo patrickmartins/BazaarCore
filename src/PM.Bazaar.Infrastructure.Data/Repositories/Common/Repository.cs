@@ -30,16 +30,6 @@ namespace PM.BazaarCore.Infrastructure.Data.Repositories.Common
             return Context.Set<TEntity>().AsQueryable();
         }
 
-        public IQueryable<TEntity> ByQuery(string query)
-        {
-            return Context.Set<TEntity>().FromSql<TEntity>(query).AsQueryable();
-        }
-
-        public IQueryable<TEntity> ByQuery(string query, params object[] parameters)
-        {
-            return Context.Set<TEntity>().FromSql(query, parameters).AsQueryable();
-        }
-
         public bool Contains(TEntity item)
         {
             return Context.Set<TEntity>().Contains(item);
@@ -100,19 +90,9 @@ namespace PM.BazaarCore.Infrastructure.Data.Repositories.Common
             Context.Update(item);
         }
 
-        public void ExecuteCommand(string query)
-        {
-            Context.Database.ExecuteSqlCommand(query);
-        }
-
-        public void ExecuteCommand(string query, params object[] parameters)
-        {
-            Context.Database.ExecuteSqlCommand(query, parameters);
-        }
-
         public Task InsertAsync(TEntity item, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Context.AddAsync(item, cancellationToken);
+            return Context.AddAsync(item, cancellationToken).AsTask();
         }
 
         public Task<bool> ContainsAsync(TEntity item, CancellationToken cancellationToken = default(CancellationToken))
@@ -138,16 +118,6 @@ namespace PM.BazaarCore.Infrastructure.Data.Repositories.Common
         public Task<int> CountAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             return Context.Set<TEntity>().CountAsync(cancellationToken);
-        }
-
-        public Task ExecuteCommandAsync(string query, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return Context.Database.ExecuteSqlCommandAsync(query, cancellationToken);
-        }
-
-        public Task ExecuteCommandAsync(string query, object[] parameters, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return Context.Database.ExecuteSqlCommandAsync(query, parameters, cancellationToken);
         }
 
         public void Dispose()

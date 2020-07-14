@@ -28,9 +28,5 @@ namespace PM.BazaarCore.Domain.Core.Interfaces
         IQueryable<TEntity> OrderByDescending<TType>(Expression<Func<TEntity, TType>> predicate);
         int Count();
         Task<int> CountAsync(CancellationToken cancellationToken);
-        void ExecuteCommand(string query);
-        Task ExecuteCommandAsync(string query, CancellationToken cancellationToken);
-        void ExecuteCommand(string query, params object[] parameters);
-        Task ExecuteCommandAsync(string query, object[] parameters, CancellationToken cancellationToken);
     }
 }

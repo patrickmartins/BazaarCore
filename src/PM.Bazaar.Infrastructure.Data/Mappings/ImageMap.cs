@@ -12,7 +12,7 @@ namespace PM.BazaarCore.Infrastructure.Data.Mappings
 
             builder.Property(c => c.Id)
                 .IsRequired();
-
+                        
             builder.Property(c => c.Bytes).IsRequired();
         }
     }
@@ -28,7 +28,7 @@ namespace PM.BazaarCore.Infrastructure.Data.Mappings
             builder.HasOne(c => c.Ad)
                 .WithMany(c => c.Pictures)
                 .HasForeignKey(c => c.IdAd);
-
+                        
             builder.HasOne(c => c.Image)
                 .WithMany()
                 .HasForeignKey(c => c.IdImage);

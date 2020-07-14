@@ -12,7 +12,7 @@ namespace PM.BazaarCore.Services.WebApi.Mapper
     public class AccountToModel : Profile
     {
         public AccountToModel()
-        {            
+        {
             CreateMap<Account, AdvertiserDetailedModel>()
                 .ForMember(c => c.Name, x => x.MapFrom(c => c.Advertiser.Name))
                 .ForMember(c => c.LastName, x => x.MapFrom(c => c.Advertiser.LastName))
@@ -23,11 +23,11 @@ namespace PM.BazaarCore.Services.WebApi.Mapper
                 .ForMember(c => c.Avatar, x => x.MapFrom(c => c.Advertiser.Avatar.Id));
 
             CreateMap<RegisterAccountModel, Account>()
-                .ConstructUsing((c, r) => new Account(c.Email, c.Password, new Advertiser(c.Id, c.Name, c.LastName, DateTime.Now, new Image(Guid.NewGuid(), GetDefaultImage((IHostingEnvironment)r.Items["env"])))))
+                .ConstructUsing((c, r) => new Account(c.Email, c.Password, new Advertiser(c.Id, c.Name, c.LastName, DateTime.Now, new Image(Guid.NewGuid(), GetDefaultImage((IWebHostEnvironment)r.Items["env"])))))
                 .ForAllMembers(c => c.Ignore());
         }
 
-        private byte[] GetDefaultImage(IHostingEnvironment env)
+        private byte[] GetDefaultImage(IWebHostEnvironment env)
         {
             return File.ReadAllBytes(Path.Combine(env.WebRootPath, Configs.DefaultAvatarUrl));
         }

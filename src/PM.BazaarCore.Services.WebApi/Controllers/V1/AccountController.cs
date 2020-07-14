@@ -25,7 +25,7 @@ namespace PM.BazaarCore.Services.WebApi.Controllers
     {
         private readonly IAccountApplicationService _service;
 
-        public AccountController(IAccountApplicationService service, IMapper mapper, IHostingEnvironment env) : base(mapper, env)
+        public AccountController(IAccountApplicationService service, IMapper mapper, IWebHostEnvironment env) : base(mapper, env)
         {
             _service = service;
         }
@@ -61,10 +61,10 @@ namespace PM.BazaarCore.Services.WebApi.Controllers
         public async Task<ActionResult> Register([FromBody] RegisterAccountModel accountModel)
         {
             var account = Map<Account>(accountModel);
-                       
+
             var result = await _service.CreateAccountAsync(account);
 
-            if(!result.Sucess)
+            if (!result.Sucess)
                 return BadRequest(result.Errors);
 
             return new StatusCodeResult(StatusCodes.Status201Created);

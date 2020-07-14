@@ -55,7 +55,7 @@ namespace PM.Bazaar.Services.WebApi.Controllers
         [ProducesResponseType(typeof(List<Error>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> SaveAvatarAsync(IFormFile file)
-        {            
+        {
             return await SaveImageAsync(file, int.Parse(Configs.MaxWidthAvatar), int.Parse(Configs.MaxHeightAvatar));
         }
 
@@ -93,7 +93,7 @@ namespace PM.Bazaar.Services.WebApi.Controllers
                 image.Mutate(ctx => ctx.Resize(newWidth, newHeight));
                 image.SaveAsPng(stream);
 
-                var result = await _service.SaveImageAsync(new BazaarCore.Domain.Entities.Image(id,stream.ToArray()));
+                var result = await _service.SaveImageAsync(new BazaarCore.Domain.Entities.Image(id, stream.ToArray()));
 
                 if (!result.Sucess)
                     return BadRequest(result.Errors);

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using PM.BazaarCore.Infrastructure.CrossCutting.AspNetUtils.Filters;
 using PM.BazaarCore.Services.WebApi.Configuration;
 using System.Reflection;
@@ -16,11 +17,13 @@ namespace PM.BazaarCore.Services.WebApi
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;            
+            Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
             services.AddBazaarServices(Configuration);
             services.ConfigureJwt(Configuration);
             services.AddAutoMapper(Assembly.GetEntryAssembly());
@@ -29,7 +32,7 @@ namespace PM.BazaarCore.Services.WebApi
             {
                 options.ReportApiVersions = true;
                 options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);                
+                options.DefaultApiVersion = new ApiVersion(1, 0);
             });
 
             services.AddVersionedApiExplorer(options =>
@@ -39,18 +42,17 @@ namespace PM.BazaarCore.Services.WebApi
             });
 
             services.Configure<ApiBehaviorOptions>(c => c.SuppressModelStateInvalidFilter = true);
-            
-            services.AddMvc(c => 
+
+            services.AddMvc(c =>
             {
                 c.Filters.Add(new InvalidModelFilter());
                 c.Filters.Add(new AutoSetUserIdFilter());
-            })
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            });
 
             services.AddSwaggerGen();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -65,10 +67,15 @@ namespace PM.BazaarCore.Services.WebApi
             app.UseSwaggerUI(config =>
             {
                 config.DocumentTitle = "BazaarCore API";
-                config.SwaggerEndpoint("/swagger/v1/swagger.json", "BazaarCore API V1.0");                
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "BazaarCore API V1.0");
             });
 
-            app.UseMvc();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using PM.BazaarCore.Infrastructure.CrossCutting.AspNetUtils.Attributes;
 using Swashbuckle.AspNetCore.Filters;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Reflection;
@@ -14,21 +14,20 @@ namespace PM.BazaarCore.Services.WebApi.Configuration
         {
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info
+                options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
                     Title = "BazaarCore API",
                     Description = "API do site BazaarCore",
-                    TermsOfService = "Nenhum",
-                    Contact = new Contact { Name = "Patrick Souza Martins", Email = "patrick.sm@hotmail.com", Url = "https://www.linkedin.com/in/patrick-martins-93a823137/" }
+                    Contact = new OpenApiContact { Name = "Patrick Souza Martins", Email = "patrick.sm@hotmail.com", Url = new Uri("https://www.linkedin.com/in/patrick-martins-93a823137/") }
                 });
 
-                options.AddSecurityDefinition("JwtToken", new ApiKeyScheme()
+                options.AddSecurityDefinition("JwtToken", new OpenApiSecurityScheme()
                 {
                     Description = "Token de acesso a API",
-                    In = "header",
+                    In = ParameterLocation.Header,
                     Name = "Authorization",
-                    Type = "apiKey"
+                    Type = SecuritySchemeType.ApiKey
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.XML";
