@@ -1,0 +1,30 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" style="user-select: none;" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="white-text">×</span>
+        </button>
+    </div>
+    <div class="modal-body">	
+		<ngx-super-croppie
+			#croppie
+			[croppieOptions]="croppieOptions"
+			[resultOptions]="resultOptions"
+		></ngx-super-croppie>
+ 
+		<div *ngIf="errors">
+			<div *ngFor="let error of errors" class="invalid-feedback d-block mt-3">{{ error.description }}</div>
+		</div>   
+    </div>
+
+    <div class="modal-footer">
+        <button mdbRipple type="button" class="btn btn-warning btn-rounded" (click)="changeAvatar()" data-dismiss="modal">		
+			<div *ngIf="changingAvatar">
+				<span class="spinner-border spinner-border-sm mr-2"></span>Alterar
+			</div>
+			<div *ngIf="!changingAvatar">
+				Alterar
+			</div>
+		</button>
+    </div>
+</div>
+      

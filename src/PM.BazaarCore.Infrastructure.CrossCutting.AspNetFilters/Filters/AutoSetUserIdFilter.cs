@@ -21,7 +21,7 @@ namespace PM.BazaarCore.Infrastructure.CrossCutting.AspNetUtils.Filters
             models.ForEach(c => SetUserId(c, context.HttpContext.User.GetUserId()));
         }
 
-        private void SetUserId(object model, Guid UserId)
+        private static void SetUserId(object model, Guid UserId)
         {
             var properties = model.GetType().GetProperties().Where(prop => prop.IsDefined(typeof(UserIdAttribute)));
 

@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using PM.BazaarCore.Application.Interfaces;
 using PM.BazaarCore.Domain.Core.Values;
 using PM.BazaarCore.Infrastructure.CrossCutting.Configuration;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
+using PM.BazaarCore.Services.WebApi.Extensions;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace PM.Bazaar.Services.WebApi.Controllers
@@ -69,7 +67,7 @@ namespace PM.Bazaar.Services.WebApi.Controllers
         [Route("upload-picture-ad")]
         [ProducesResponseType(typeof(List<Error>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult> SavePictureAsync(IFormFile file)
+        public async Task<ActionResult> SaveAdPictureAsync(IFormFile file)
         {
             return await SaveImageAsync(file, int.Parse(Configs.MaxWidthPictureAd), int.Parse(Configs.MaxHeightPictureAd));
         }
@@ -78,22 +76,9 @@ namespace PM.Bazaar.Services.WebApi.Controllers
         {
             var id = Guid.NewGuid();
 
-            using (Image<Rgba32> image = Image.Load(file.OpenReadStream()))
+            using (Image image = Image.FromStream(file.OpenReadStream()))
             {
-                var stream = new MemoryStream();
-
-                var ratioX = (double)maxWidth / image.Width;
-                var ratioY = (double)maxHeight / image.Height;
-
-                var ratio = Math.Min(ratioX, ratioY);
-
-                var newWidth = (int)(image.Width * ratio);
-                var newHeight = (int)(image.Height * ratio);
-
-                image.Mutate(ctx => ctx.Resize(newWidth, newHeight));
-                image.SaveAsPng(stream);
-
-                var result = await _service.SaveImageAsync(new BazaarCore.Domain.Entities.Image(id, stream.ToArray()));
+                var result = await _service.SaveImageAsync(new BazaarCore.Domain.Entities.Image(id, image.Resize(maxWidth, maxHeight).ToArray()));
 
                 if (!result.Sucess)
                     return BadRequest(result.Errors);

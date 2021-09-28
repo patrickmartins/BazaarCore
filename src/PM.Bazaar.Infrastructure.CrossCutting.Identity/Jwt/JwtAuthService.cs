@@ -30,7 +30,7 @@ namespace PM.BazaarCore.Infrastructure.CrossCutting.Identity.Jwt
             var signInResult = await _signInManager.PasswordSignInAsync(email, password, false, false);
 
             if (!signInResult.Succeeded)
-                return new OperationResult<JwtToken>(new Error("Usuário ou senha incorretos", "Email"));
+                return new OperationResult<JwtToken>(new Error("Usuário ou senha incorretos", "Login"));
 
             var accountResult = await _accountManager.GetByEmailAsync(email);            
 

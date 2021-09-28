@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-dark light-blue fixed-top lighten-1 px-2">
+    <button class="navbar-toggler p-0 d-sm-none waves-light border-0 ml-2 position-absolute animated fadeIn" style="outline: none; left: 0;" mdbWavesEffect (click)="showSearch = !showSearch">
+        <i class="fa fa-search p-2"></i>
+    </button>
+
+    <form name="search" class="form-inline search-form mr-auto ml-auto ml-lg-auto ml-sm-3 ml-md-3">
+        <a class="navbar-brand mr-0 mr-sm-3" [routerLink]="['/']"><img class="logo" src="assets/img/logo.png" /></a>
+        <div id="input-search" class="waves-input-wrapper waves-effect waves-light" [ngClass]="{'show': showSearch}">
+            <input name="keyword" class="form-control d-none d-sm-inline-flex animated slideInDown faster" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+        </div>
+    </form>
+
+    <app-menu-login class="position-absolute mr-3 animated fadeIn" style="right: 0"></app-menu-login>
+</nav>

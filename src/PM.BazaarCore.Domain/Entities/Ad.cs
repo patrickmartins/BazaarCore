@@ -14,10 +14,10 @@ namespace PM.BazaarCore.Domain.Entities
         public double Price { get; private set; }
         public DateTime Date { get; private set; }
 
-        private HashSet<AdImage> _pictures;
+        private readonly HashSet<AdImage> _pictures;
         public virtual IReadOnlyCollection<AdImage> Pictures => _pictures;
 
-        private HashSet<Question> _questions;
+        private readonly HashSet<Question> _questions;
         public virtual IReadOnlyCollection<Question> Questions => _questions;
 
         public virtual Category Category { get; private set; }

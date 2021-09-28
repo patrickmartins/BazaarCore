@@ -11,7 +11,7 @@ namespace PM.BazaarCore.Services.WebApi.Mapper
             CreateMap<Advertiser, AdvertiserBasicModel>()
                 .ForMember(c => c.Avatar, x => x.MapFrom(c => c.Avatar.Id));
 
-            CreateMap<Advertiser, AdvertiserDetailedModel>()
+            CreateMap<Advertiser, AccountModel>()
                 .ForMember(c => c.Avatar, x => x.MapFrom(c => c.Avatar.Id));
         }
     }

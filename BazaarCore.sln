@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Domain", "4 - Domain", "{EB764158-BCB1-41A5-8ABA-5652B717CD08}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{EB764158-BCB1-41A5-8ABA-5652B717CD08}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PM.BazaarCore.Domain.Core", "src\PM.BazaarCore.Domain.Core\PM.BazaarCore.Domain.Core.csproj", "{5381CC8B-675D-424D-B1E8-C7B04729E4EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PM.BazaarCore.Domain", "src\PM.BazaarCore.Domain\PM.BazaarCore.Domain.csproj", "{088D1BA1-7F87-4B52-B367-68BF7E21E389}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Infrastructure", "5 - Infrastructure", "{356D5585-6594-4FF7-A982-BF2A62CED0CB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{356D5585-6594-4FF7-A982-BF2A62CED0CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{A215B887-2922-4BED-936C-4BE7B8FF909C}"
 EndProject
@@ -21,11 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PM.BazaarCore.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PM.BazaarCore.Infrastructure.CrossCutting.Identity", "src\PM.Bazaar.Infrastructure.CrossCutting.Identity\PM.BazaarCore.Infrastructure.CrossCutting.Identity.csproj", "{0A1D3CDC-FCC4-441A-9D9A-AB7839B11B3E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Services", "{F3FE2C4B-344D-4765-B44D-21D68DA57252}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Services", "1 - Services", "{F3FE2C4B-344D-4765-B44D-21D68DA57252}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PM.BazaarCore.Services.WebApi", "src\PM.BazaarCore.Services.WebApi\PM.BazaarCore.Services.WebApi.csproj", "{B8115833-B58D-43E2-99E4-56340D2C9E93}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Application", "3 - Application", "{338A4563-CB68-482F-BF9D-C228A292E14A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{338A4563-CB68-482F-BF9D-C228A292E14A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PM.BazaarCore.Application", "src\PM.BazaarCore.Application\PM.BazaarCore.Application.csproj", "{6BA63380-A6C2-4322-A5D4-ACDDF38967C7}"
 EndProject

@@ -28,14 +28,14 @@ namespace PM.BazaarCore.Application.ApplicationServices
             _imageService = imageService;
         }
 
-        public AdvertisingApplicationService(IAdvertisingService adService, IImageService imageService, IUoW uow) : base(uow, CancellationToken.None) { }
+        public AdvertisingApplicationService(IUoW uow) : base(uow, CancellationToken.None) { }
 
-        public IEnumerable<Ad> SearchAds(string keywordSearch, Guid[] categories = default(Guid[]), OrderSearchAd order = OrderSearchAd.Publish, double maxPrice = 0, double minPrice = 0, int pageSize = 20, int page = 1)
+        public IEnumerable<Ad> SearchAds(string keywordSearch, Guid[] categories = default, OrderSearchAd order = OrderSearchAd.Publish, double maxPrice = 0, double minPrice = 0, int pageSize = 20, int page = 1)
         {
             return Search(keywordSearch, categories, order, maxPrice, minPrice, pageSize, page).ToList();
         }
 
-        public async Task<IEnumerable<Ad>> SearchAdsAsync(string keywordSearch, Guid[] categories = default(Guid[]), OrderSearchAd order = OrderSearchAd.Publish, double maxPrice = 0, double minPrice = 0, int pageSize = 20, int page = 1)
+        public async Task<IEnumerable<Ad>> SearchAdsAsync(string keywordSearch, Guid[] categories = default, OrderSearchAd order = OrderSearchAd.Publish, double maxPrice = 0, double minPrice = 0, int pageSize = 20, int page = 1)
         {
             return await Search(keywordSearch, categories, order, maxPrice, minPrice, pageSize, page).ToListAsync(CancellationToken);
         }

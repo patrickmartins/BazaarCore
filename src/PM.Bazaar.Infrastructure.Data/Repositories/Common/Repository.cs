@@ -90,32 +90,32 @@ namespace PM.BazaarCore.Infrastructure.Data.Repositories.Common
             Context.Update(item);
         }
 
-        public Task InsertAsync(TEntity item, CancellationToken cancellationToken = default(CancellationToken))
+        public Task InsertAsync(TEntity item, CancellationToken cancellationToken = default)
         {
             return Context.AddAsync(item, cancellationToken).AsTask();
         }
 
-        public Task<bool> ContainsAsync(TEntity item, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<bool> ContainsAsync(TEntity item, CancellationToken cancellationToken = default)
         {
             return Context.Set<TEntity>().ContainsAsync(item, cancellationToken);
         }
 
-        public Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return Context.Set<TEntity>().FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
         }
 
-        public Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Context.Set<TEntity>().SingleOrDefaultAsync(predicate, cancellationToken);
         }
 
-        public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Context.Set<TEntity>().FirstOrDefaultAsync(predicate, cancellationToken);
         }
 
-        public Task<int> CountAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<int> CountAsync(CancellationToken cancellationToken = default)
         {
             return Context.Set<TEntity>().CountAsync(cancellationToken);
         }

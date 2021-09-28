@@ -1,0 +1,75 @@
+<div class="card ml-auto mr-auto z-depth-0 border border-light animated fadeIn" style="max-width: 400px; margin-top: 8%;">
+    <h4 class="card-header light-blue lighten-1 white-text text-uppercase text-center py-3">Cadastro</h4>    
+    <form [formGroup]="form" (ngSubmit)="register()" [disableInputs]="registering" class="card-body" novalidate>
+        <div class="form-group">
+            <label [ngClass]="{'red-text': form.controls.name.dirty && errors.lastname, 'green-text': form.controls.name.dirty && !errors.lastname }" for="name">Nome</label> 
+            <div class="input-group">                           
+                <input formControlName="name" name="name" type="text" id="name" [ngClass]="{'form-control is-invalid d-block': errors.name && form.controls.name.dirty, 'form-control is-valid d-block': form.controls.name.valid && form.controls.name.dirty, 'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="form.controls.name.dirty" class="far input-icon" [ngClass]="{'fa-times-circle red-text': errors.name && form.controls.name.dirty, 'fa-check-circle green-text': !errors.name && form.controls.name.dirty }"></i>
+            </div>
+
+            <div *ngIf="errors.name && form.controls.name.dirty">
+                <div *ngFor="let error of errors.name" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label [ngClass]="{'red-text': form.controls.lastname.dirty && errors.lastname, 'green-text': form.controls.lastname.dirty && !errors.lastname }" for="lastname">Sobrenome</label> 
+            <div class="input-group">                           
+                <input formControlName="lastname" name="lastname" type="text" id="lastname" [ngClass]="{'form-control is-invalid d-block': errors.lastname && form.controls.lastname.dirty, 'form-control is-valid d-block': form.controls.lastname.valid && form.controls.lastname.dirty, 'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="form.controls.lastname.dirty" class="far input-icon" [ngClass]="{'fa-times-circle red-text': errors.lastname, 'fa-check-circle green-text': !errors.lastname }"></i>
+            </div>
+
+            <div *ngIf="errors.lastname && form.controls.lastname.dirty">
+                <div *ngFor="let error of errors.lastname" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [ngClass]="{'red-text': form.controls.email.dirty && errors.email, 'green-text': form.controls.email.dirty && !errors.email }" for="email">E-mail</label> 
+            <div class="input-group">                           
+                <input formControlName="email" name="email" type="email" id="email" [ngClass]="{'form-control is-invalid d-block': errors.email && form.controls.email.dirty, 'form-control is-valid d-block': form.controls.email.valid && form.controls.email.dirty, 'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="form.controls.email.dirty" class="far input-icon" [ngClass]="{'fa-times-circle red-text': errors.email, 'fa-check-circle green-text': !errors.email }"></i>
+            </div>
+
+            <div *ngIf="errors.email && form.controls.email.dirty">
+                <div *ngFor="let error of errors.email" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [ngClass]="{'red-text': form.controls.password.dirty && errors.password, 'green-text': form.controls.password.dirty && !errors.password }" for="password">Senha</label> 
+            <div class="input-group">                           
+                <input formControlName="password" name="password" type="password" id="password" [ngClass]="{'form-control is-invalid d-block': errors.password && form.controls.password.dirty, 'form-control is-valid d-block': form.controls.password.valid && form.controls.password.dirty, 'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="form.controls.password.dirty" class="far input-icon" [ngClass]="{'fa-times-circle red-text': errors.password, 'fa-check-circle green-text': !errors.password }"></i>
+            </div>
+
+            <div *ngIf="errors.password && form.controls.password.dirty">
+                <div *ngFor="let error of errors.password" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [ngClass]="{'red-text': form.controls.confirmpassword.dirty && errors.confirmpassword, 'green-text': form.controls.confirmpassword.dirty && !errors.confirmpassword }" for="confirmpassword">Confirme sua senha</label> 
+            <div class="input-group">                           
+                <input formControlName="confirmpassword" name="confirmpassword" type="password" id="confirmpassword" [ngClass]="{'form-control is-invalid d-block': errors.confirmpassword && form.controls.confirmpassword.dirty, 'form-control is-valid d-block': form.controls.confirmpassword.valid && form.controls.confirmpassword.dirty, 'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="form.controls.confirmpassword.dirty" class="far input-icon" [ngClass]="{'fa-times-circle red-text': errors.confirmpassword, 'fa-check-circle green-text': !errors.confirmpassword }"></i>
+            </div>
+
+            <div *ngIf="errors.confirmpassword && form.controls.confirmpassword.dirty">
+                <div *ngFor="let error of errors.confirmpassword" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>                    
+        </div>
+
+        <div class="text-center mt-4">
+            <button mdbBtn mdbWavesEffect color="amber" class="waves-light btn-rounded" type="submit" [disabled]="!form.valid || registering">
+                <div *ngIf="registering">
+                    <span class="spinner-border spinner-border-sm mr-2"></span>Cadastrar
+                </div>
+                <div *ngIf="!registering">
+                    Cadastrar
+                </div>
+            </button>
+        </div>
+    </form>
+</div>

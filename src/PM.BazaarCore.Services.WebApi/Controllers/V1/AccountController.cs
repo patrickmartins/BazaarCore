@@ -18,7 +18,6 @@ using System.Threading.Tasks;
 namespace PM.BazaarCore.Services.WebApi.Controllers
 {
     [ApiVersion("1.0")]
-    [ApiVersion("2.0")]
     [Route("api/v{version:ApiVersion}/account")]
     [ApiController]
     public class AccountController : BaseController
@@ -30,7 +29,6 @@ namespace PM.BazaarCore.Services.WebApi.Controllers
             _service = service;
         }
 
-
         /// <summary>
         /// Retorna as informações do usuário atualmente logado
         /// </summary>
@@ -39,7 +37,7 @@ namespace PM.BazaarCore.Services.WebApi.Controllers
         [HttpGet]
         [Route("me")]
         [ProducesResponseType(typeof(List<Error>), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(AdvertiserDetailedModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AccountModel), StatusCodes.Status200OK)]
         public async Task<ActionResult> MyAccount()
         {
             var result = await _service.GetByIdAsync(User.GetUserId());
@@ -47,7 +45,7 @@ namespace PM.BazaarCore.Services.WebApi.Controllers
             if (!result.Sucess)
                 return NotFound(result.Errors);
 
-            return Ok(Map<AdvertiserDetailedModel>(result.Value));
+            return Ok(Map<AccountModel>(result.Value));
         }
 
         /// <summary>
@@ -78,15 +76,21 @@ namespace PM.BazaarCore.Services.WebApi.Controllers
         [HttpPost]
         [Route("login")]
         [ProducesResponseType(typeof(List<Error>), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(JwtToken), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(LoginSucessModel), StatusCodes.Status200OK)]
         public async Task<ActionResult> Login([FromServices] IJwtAuthService authService, [FromBody] LoginModel loginModel)
         {
-            var result = await authService.SignInAsync(loginModel.Email, loginModel.Password);
+            var resultLogin = await authService.SignInAsync(loginModel.Email, loginModel.Password);
 
-            if (!result.Sucess)
-                return BadRequest(result.Errors);
+            if (!resultLogin.Sucess)
+                return BadRequest(resultLogin.Errors);
 
-            return Ok(result.Value);
+            var resultAccount = await _service.GetByEmailAsync(loginModel.Email);
+
+            return Ok(new LoginSucessModel
+            {
+                Token = resultLogin.Value,
+                User = Map<AccountModel>(resultAccount.Value)                
+            });
         }
 
         /// <summary>
@@ -136,7 +140,7 @@ namespace PM.BazaarCore.Services.WebApi.Controllers
             var result = await _service.ChangePasswordAsync(User.GetUserId(), passwordModel.CurrentPassword, passwordModel.Password);
 
             if (!result.Sucess)
-                BadRequest(result.Errors);
+                return BadRequest(result.Errors);
 
             return Ok();
         }

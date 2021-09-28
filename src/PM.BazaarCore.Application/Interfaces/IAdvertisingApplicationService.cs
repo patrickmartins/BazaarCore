@@ -9,12 +9,12 @@ namespace PM.BazaarCore.Application.Interfaces
 {
     public interface IAdvertisingApplicationService
     {
-        IEnumerable<Ad> SearchAds(string keywordSearch, Guid[] categories = default(Guid[]), 
+        IEnumerable<Ad> SearchAds(string keywordSearch, Guid[] categories = default, 
                                             OrderSearchAd order = OrderSearchAd.Publish,
                                             double maxPrice = 0, double minPrice = 0,
                                             int pageSize = 20, int page = 1);
 
-        Task<IEnumerable<Ad>> SearchAdsAsync(string keywordSearch, Guid[] categories = default(Guid[]),
+        Task<IEnumerable<Ad>> SearchAdsAsync(string keywordSearch, Guid[] categories = default,
                                             OrderSearchAd order = OrderSearchAd.Publish,
                                             double maxPrice = 0, double minPrice = 0,
                                             int pageSize = 20, int page = 1);

@@ -13,7 +13,7 @@ namespace PM.BazaarCore.Services.WebApi.Mapper
     {
         public AccountToModel()
         {
-            CreateMap<Account, AdvertiserDetailedModel>()
+            CreateMap<Account, AccountModel>()
                 .ForMember(c => c.Name, x => x.MapFrom(c => c.Advertiser.Name))
                 .ForMember(c => c.LastName, x => x.MapFrom(c => c.Advertiser.LastName))
                 .ForMember(c => c.Avatar, x => x.MapFrom(c => c.Advertiser.Avatar.Id));

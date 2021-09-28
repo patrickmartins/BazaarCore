@@ -1,4 +1,5 @@
 ﻿using PM.BazaarCore.Infrastructure.CrossCutting.AspNetUtils.Attributes;
+using PM.BazaarCore.Infrastructure.CrossCutting.Identity.Jwt;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,7 +8,7 @@ namespace PM.BazaarCore.Services.WebApi.Models
     /// <summary>
     /// Dados detalhados de um usuário
     /// </summary>
-    public class AdvertiserDetailedModel
+    public class AccountModel
     {
         /// <summary>
         /// Nome do usuário
@@ -20,7 +21,7 @@ namespace PM.BazaarCore.Services.WebApi.Models
         public string LastName { get; set; }
 
         /// <summary>
-        /// Email do usuários
+        /// Email do usuário
         /// </summary>
         public string Email { get; set; }
 
@@ -28,6 +29,22 @@ namespace PM.BazaarCore.Services.WebApi.Models
         /// Identificador da imagem de perfil do usuário
         /// </summary>
         public Guid Avatar { get; set; }
+    }
+
+    /// <summary>
+    /// Dados do usuário logado
+    /// </summary>
+    public class LoginSucessModel
+    {
+        /// <summary>
+        /// Dados do usuário
+        /// </summary>
+        public AccountModel User { get; set; }
+
+        /// <summary>
+        /// Token de acesso
+        /// </summary>
+        public JwtToken Token { get; set; }
     }
 
     /// <summary>

@@ -26,7 +26,7 @@ namespace PM.BazaarCore.Infrastructure.Data.UnitOfWork
             _context.SaveChanges();
         }
 
-        public Task CommitAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task CommitAsync(CancellationToken cancellationToken = default)
         {
             return _context.SaveChangesAsync(cancellationToken);
         }

@@ -43,7 +43,7 @@ namespace PM.BazaarCore.Domain.Core.Services
             return result;
         }
 
-        public async Task<OperationResult<TEntity>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<OperationResult<TEntity>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             var result = new OperationResult<TEntity>();
             var entitie = await Repository.GetByIdAsync(id, cancellationToken);
@@ -66,7 +66,7 @@ namespace PM.BazaarCore.Domain.Core.Services
             return new OperationResult(result.Errors.ToArray());
         }
 
-        protected async Task<OperationResult> InsertAsync(TEntity item, CancellationToken cancellationToken = default(CancellationToken))
+        protected async Task<OperationResult> InsertAsync(TEntity item, CancellationToken cancellationToken = default)
         {
             var result = item.IsValid();
 

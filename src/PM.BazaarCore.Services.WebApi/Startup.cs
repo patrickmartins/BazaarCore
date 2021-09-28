@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -50,6 +49,8 @@ namespace PM.BazaarCore.Services.WebApi
             });
 
             services.AddSwaggerGen();
+
+            services.AddCors();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -61,8 +62,6 @@ namespace PM.BazaarCore.Services.WebApi
 
             app.UseStaticFiles();
 
-            app.UseAuthentication();
-
             app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
@@ -70,7 +69,17 @@ namespace PM.BazaarCore.Services.WebApi
                 config.SwaggerEndpoint("/swagger/v1/swagger.json", "BazaarCore API V1.0");
             });
 
+            app.UseCors(config =>
+            {
+                config.AllowAnyOrigin();
+                config.AllowAnyMethod();
+                config.AllowAnyHeader();
+            });
+
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -4,8 +4,7 @@ using PM.BazaarCore.Infrastructure.CrossCutting.Configuration;
 namespace PM.BazaarCore.Infrastructure.CrossCutting.Identity.Globalization
 {
     public class ErrorDescriberPtBr : IdentityErrorDescriber
-    {
-        private readonly int _minCharactersPassword = int.Parse(Configs.MinCharactersPassword);
+    {        
         private readonly int _minPasswordCharacters = int.Parse(Configs.MinCharactersPassword);
         private readonly int _maxPasswordCharacters = int.Parse(Configs.MaxCharactersPassword);
 
@@ -14,6 +13,7 @@ namespace PM.BazaarCore.Infrastructure.CrossCutting.Identity.Globalization
         public override IdentityError InvalidEmail(string email) => new IdentityError() { Code = "Email", Description = "O e-mail informado é inválido" };
         public override IdentityError InvalidUserName(string userName) => new IdentityError() { Code = "Email", Description = "O e-mail informado é inválido" };
         public override IdentityError PasswordTooShort(int length) => new IdentityError() { Code = "Password", Description = $"A senha deve conter no mínimo {_minPasswordCharacters} e no máximo {_maxPasswordCharacters} caracteres" };
+        public override IdentityError PasswordMismatch() => new IdentityError() { Code = "CurrentPassword", Description = "A senha informada está incorreta" };
     }
 
     public static class IdentityErrorDescriberExtensions
