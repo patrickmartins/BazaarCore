@@ -11,6 +11,7 @@ namespace PM.BazaarCore.Infrastructure.Data.Mappings
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Id)
+                .ValueGeneratedNever()
                 .IsRequired();
                         
             builder.Property(c => c.Bytes).IsRequired();

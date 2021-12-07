@@ -1,0 +1,24 @@
+<table class="w-100">
+	<tr class="my-2">
+		<td>
+			<label for="priceMax" class="mb-0 my-2">Máx.</label>
+		</td>
+		<td>
+			<input #rangeMax type="range" class="custom-range" id="priceMax" [min]="minPrice" [max]="maxPrice" step="20" [(ngModel)]="maxPriceValue" (change)="onChangeMaxPrice($event.target)">
+		</td>
+		<td style="width: 60px;">
+			<span class="ml-1">{{ rangeMax.value | currency:'BRL' }}</span>
+		</td>
+	</tr>
+	<tr class="my-2">
+		<td>
+			<label for="priceMin" class="mb-0 my-2">Min.</label>
+		</td>
+		<td>
+			<input #rangeMin type="range" class="custom-range" id="priceMin" [min]="minPrice" [max]="maxPrice" step="20" [(ngModel)]="minPriceValue" (change)="onChangeMinPrice($event.target)">
+		</td>
+		<td style="width: 60px;">
+			<span class="ml-1">{{ rangeMin.value | currency:'BRL' }}</span>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,66 @@
+<div class="row mx-0">
+    <div class="col-lg-3 col-md-4 accordion px-2" id="accordionFilters">
+        <div class="my-2 d-block d-md-none text-right">
+            <button mdbBtn mdbWavesEffect color="amber" (click)="filtersPanel.toggle()" class="btn btn-outline-amber btn-rounded p-0 m-0">
+                <i class="fa fa-filter p-2"></i>
+            </button>
+        </div>
+        <div id="filters" mdbCollapse #filtersPanel="bs-collapse" class="d-md-block h-md-100">
+			<div class="border border-light my-2 white" style="display: grid">
+				<h6 class="light-blue lighten-1 white-text text-uppercase text-center py-1">Categorias</h6>
+				<div class="px-3 pt-2 pb-3">
+					<category-filter [categories]="categories" [(selectedsIds)]="filters.categories"></category-filter>
+				</div>
+			</div>			
+
+            <div class="border border-light my-3 white" style="display: grid">
+                <h6 class="light-blue lighten-1 white-text text-uppercase text-center py-1">Preço</h6>
+                <div class="px-3 pt-2 pb-3">
+					<price-filter [minPrice]="0" [maxPrice]="2000" [(minPriceValue)]="this.filters.minPrice" [(maxPriceValue)]="this.filters.maxPrice" ></price-filter>
+                </div>
+            </div>
+            <div class="border border-light my-2 mb-2 white">
+                <div class="mx-sm-5 mx-md-3 mx-lg-4 mx-5">
+                    <button mdbBtn mdbWavesEffect color="amber" class="btn btn-rounded waves-light py-1 px-md-2 m-0 my-3 w-100" (click)="applyFilters()">Aplicar filtros</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+		<div *ngIf="(ads == null || ads.length == 0) && !searching" class="border border-light white my-2">
+			<h5 class="p-4 p-sm-5 text-center"><i class="fa fa-search p-2 mr-2 amber-text"></i>Não há anúncios que coincidam com a sua busca.</h5>
+		</div>
+		<div class="mt-2" *ngIf="(ads != null && ads.length > 0) && !searching">
+			<div class="d-flex justify-content-end mb-4">
+				<div class="d-sm-flex mr-2 order-search mr-3">
+					<h6 class="font-weight-bolder mb-0 mr-2 py-2">Ordenar por</h6>
+					<select class="form-control" [(ngModel)]="this.filters.order" (change)="applyFilters()">
+						<option value="0">Maior preço</option>
+						<option value="1">Menor preço</option>
+						<option value="2" selected>Data de publicação</option>
+					</select>
+				</div>
+				<div class="d-sm-flex page-search">
+					<h6 class="font-weight-bolder mb-0 mr-2 py-2">Exibir</h6>
+					<select class="form-control"[(ngModel)]="this.filters.pageSize" (change)="applyFilters()">
+						<option value="9">9 por página</option>
+						<option value="18" selected>18 por página</option>
+						<option value="27">27 por página</option>
+						<option value="45">45 por página</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div *ngFor="let ad of ads" class="col-lg-4 col-sm-6 mb-3 pb-2 mx-sm-0 shadow-3">
+					<ad-card [ad]="ad"></ad-card>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row" *ngIf="searching">
+			<div *ngFor="let index of [].constructor(12)" class="col-lg-4 col-sm-6 mb-3 pb-2 mx-sm-0 shadow-3">
+				<ad-card-loader></ad-card-loader>
+			</div>
+		</div>
+    </div>
+</div>

@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { AccountService } from "../account/services/account.service";
+import { AccountService } from "../shared/services/account.service";
 
 @Injectable()
 

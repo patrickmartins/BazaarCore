@@ -11,6 +11,11 @@ namespace PM.BazaarCore.Services.WebApi.Models
     public class AccountModel
     {
         /// <summary>
+        /// Id do usuário
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
         /// Nome do usuário
         /// </summary>
         public string Name { get; set; }
@@ -52,6 +57,11 @@ namespace PM.BazaarCore.Services.WebApi.Models
     /// </summary>
     public class AdvertiserBasicModel
     {
+        /// <summary>
+        /// Id do usuário
+        /// </summary>
+        public Guid Id { get; set; }
+
         /// <summary>
         /// Nome do usuário
         /// </summary>

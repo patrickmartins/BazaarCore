@@ -1,0 +1,98 @@
+<ad-loader class="w-100" *ngIf="loadingAd"></ad-loader>
+
+<div *ngIf="!loadingAd">
+	<div class="border border-light col-md-12 mb-3 px-0 d-flex align-items-stretch w-100 animated fadeIn" style="display: none;">
+		<div class="p-2 p-sm-3 pt-4 p-md-4 px-lg-4 py-lg-4 div-center white w-100 animated fadeIn">        
+			<div class="row">						
+				<div class="col-lg-8 col-md-8 col-sm-12 col align-items-center py-3">
+					<h4 class="mb-4 font-weight-bolder d-md-none d-sm-block d-block">{{ ad.title }}</h4>
+					<carousel-pictures [picture]="ad.pictures"></carousel-pictures>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col pl-lg-0 py-3">
+					<h4 class="mb-4 font-weight-bolder d-md-block d-sm-none d-none">{{ ad.title }}</h4>
+					<div class="w-100 d-xsm-inline-flex d-sm-inline-flex d-sm-flex flex-md-column">										
+						<div class="advertiser pb-3">
+							<h6 class="mb-3 font-weight-bolder">Anunciado por:</h6>
+							<div class="d-flex">
+								<img defaultImage="../assets/img/ring.gif" [lazyLoad]="ad.advertiser.avatarUrl" class="rounded-circle z-depth-0" alt="avatar image">
+								<span class="font-weight-bolder blue-text mr-1 my-auto">{{ ad.advertiser.name }}</span>
+							</div>
+						</div>
+						<div class="d-md-block d-sm-flex justify-content-end w-100">
+							<div class="price ml-2">
+								<div class="arrow-triangle right d-inline-flex"></div>
+								<span class="badge px-3 mr-2 light-blue text-white">{{ ad.price | currency:'BRL' }}<span class="ml-1" style="font-size: 65%;">à vista</span></span>		
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="border border-light col-md-12 mb-3 px-0 d-flex align-items-stretch w-100 animated fadeIn" style="display: none;">
+		<div class="p-2 p-sm-3 pt-4 p-md-4 px-lg-4 py-lg-4 div-center white w-100 animated fadeIn">  
+			<div class="row">
+				<div class="col">
+					<h4 class="mb-4 font-weight-bolder">Descrição</h4>
+					<p style="white-space: pre-line">{{ ad.description }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="border border-light col-md-12 mb-3 px-0 d-flex align-items-stretch w-100 animated fadeIn" style="display: none;">
+		<div class="p-2 p-sm-3 pt-4 p-md-4 px-lg-4 py-lg-4 div-center white w-100 animated fadeIn">
+			<div class="row">
+				<div class="col" style="overflow: hidden"> 
+					<h4 class="mb-4 font-weight-bolder">Perguntas e respostas</h4>
+					<form [formGroup]="formQuestion.formGroup" *ngIf="loggedUser && ad.advertiser.id != loggedUser.id" (ngSubmit)="ask()" class="advertiser d-block mb-3" novalidate>
+						<table class="w-100">
+							<tr>
+								<td class="pt-2">
+									<div class="d-inline-flex w-100 flex-column">
+										<img defaultImage="../assets/img/ring.gif" [lazyLoad]="loggedUser ? loggedUser.avatarUrl : ''" class="rounded-circle z-depth-0 mr-2 mr-sm-3 d-none d-sm-none d-md-block" alt="avatar image">
+									</div>
+								</td>
+								<td class="w-100 pr-2">
+									<div class="mr-2 d-inline-flex w-100 flex-column">
+										<input formControlName="description" name="description" type="text" id="description" 
+											[ngClass]="{'form-control is-invalid d-block': formQuestion.errors.description && formQuestion.formGroup.controls.description.dirty, 
+												'form-control is-valid d-block': formQuestion.errors.description && formQuestion.formGroup.controls.description.dirty, 
+												'form-control': true}" class="form-control">
+									</div>
+								</td>
+								<td>
+									<div class="d-inline-flex w-100 flex-column">
+										<button mdbBtn mdbWavesEffect color="amber" class="btn btn-rounded m-0 py-2 px-3 px-md-4 px-lg-5 align-top ask-btn btn-amber waves-effect float-right float-sm-none" type="submit" [disabled]="!formQuestion.formGroup.valid || asking">
+											<div *ngIf="asking" class="d-flex">
+												<span class="spinner-border spinner-border-sm mr-2"></span>Perguntar
+											</div>
+											<div *ngIf="!asking">
+												Perguntar
+											</div>
+										</button>										
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<div *ngIf="formQuestion.errors.description && formQuestion.formGroup.controls.description.dirty">
+										<div *ngFor="let error of formQuestion.errors.description" class="invalid-feedback d-block">{{ error.description }}</div>
+									</div>		
+								</td>
+							</tr>
+						</table>
+					</form>
+					
+					<h6 class="mb-4 mt-4 font-weight-bolder text-center" *ngIf="ad.questions.length == 0">Ninguém fez perguntas ainda. Seja o primeiro!</h6>
+
+					<ul class="question-list p-0 w-100"> 
+						<li *ngFor="let question of ad.questions" class="animated fadeInLeft">
+							<ad-question [question]="question" [advertiser]="ad.advertiser" [canAnswer]="loggedUser && !question.response ? ad.advertiser.id == loggedUser.id : false" (onAnswer)="onAnswer($event)"></ad-question>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

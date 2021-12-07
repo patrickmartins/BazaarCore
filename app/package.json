@@ -25,12 +25,14 @@
     "animate.css": "^3.7.2",
     "chart.js": "^2.5.0",
     "croppie": "^2.6.5",
+    "guid-typescript": "^1.0.9",
     "hammerjs": "^2.0.8",
     "ng-lazyload-image": "^9.1.0",
     "ngx-super-croppie": "^12.0.0",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "typescript-collections": "^1.3.3",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {

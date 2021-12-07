@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PM.BazaarCore.Infrastructure.CrossCutting.AspNetUtils.Filters;
 using PM.BazaarCore.Services.WebApi.Configuration;
-using System.Reflection;
 
 namespace PM.BazaarCore.Services.WebApi
 {
@@ -25,31 +22,10 @@ namespace PM.BazaarCore.Services.WebApi
 
             services.AddBazaarServices(Configuration);
             services.ConfigureJwt(Configuration);
-            services.AddAutoMapper(Assembly.GetEntryAssembly());
-
-            services.AddApiVersioning(options =>
-            {
-                options.ReportApiVersions = true;
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-            });
-
-            services.AddVersionedApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;
-            });
-
-            services.Configure<ApiBehaviorOptions>(c => c.SuppressModelStateInvalidFilter = true);
-
-            services.AddMvc(c =>
-            {
-                c.Filters.Add(new InvalidModelFilter());
-                c.Filters.Add(new AutoSetUserIdFilter());
-            });
-
+            services.AddAutoMapper();
+            services.AddVersionApi();
+            services.AddMcv();
             services.AddSwaggerGen();
-
             services.AddCors();
         }
 

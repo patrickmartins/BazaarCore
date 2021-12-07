@@ -1,0 +1,16 @@
+<div style="overflow: hidden;">
+	<mdb-carousel #carousel id="adpicture" class="carousel slide" [animation]="'slide'" (activeSlideChange)="onSelectedPitureChange($event)">
+		<mdb-carousel-item *ngFor="let picture of picture">
+			<img defaultImage="../assets/img/ring.gif" class="w-100" [lazyLoad]="imageService.getUrlImageById(picture)">
+		</mdb-carousel-item>
+	</mdb-carousel>
+	<div id="adthumbs" class="thumbnail-list" data-ride="carousel">
+		<div class="thumbnail-itens">
+			<div *ngFor="let picture of picture; let i = index">
+				<a data-target="#adpicture" (click)="selectPicture(i)" >
+					<img defaultImage="../assets/img/ring.gif" [lazyLoad]="imageService.getUrlImageById(picture)" class="carousel-thumb" [ngClass]="{'active': i == selected}">
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

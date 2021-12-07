@@ -9,6 +9,8 @@ namespace PM.BazaarCore.Infrastructure.Data.Mappings
         public void Configure(EntityTypeBuilder<AccountLogin> builder)
         {
             builder.HasKey(u => new { u.AccountId, u.LoginProvider, u.ProviderKey });
+
+            builder.Property(c => c.AccountId).ValueGeneratedNever();
         }
     }
 }

@@ -1,0 +1,83 @@
+.logo {
+    height: 38px;
+}
+
+#input-search.show input {
+    display: block!important;
+    float: right;
+}
+
+.search-form .search-input {
+    width: 260px;	
+}
+
+.search-form input:focus {
+    outline: none;
+}
+
+.search-form button {
+    background-color: white;
+	color: #c1c1c1;
+	outline: none;
+}
+
+@media (min-width: 950px) {
+    .ml-md-3, .mx-md-3 {
+        margin-left: auto !important;
+    }
+}
+
+@media (min-width: 780px) {
+    .search-form .search-input {
+        width: 450px!important;
+    }
+}
+
+@media (min-width: 680px) {
+    .search-form .search-input {
+        width: 350px;
+    }
+}
+
+@media (min-width: 576px) {
+    .search-form {
+        padding-right: 124px;
+    }
+}
+
+@media (max-width: 576px) {
+    .search-form {
+        padding-right: 0;
+    }
+    
+    .search-form .search-input {
+        width: 100%;
+        padding-right: 0;
+    }
+    
+    #input-search.show {
+        left: 40px;
+        display: block;
+        position: absolute;
+        margin-right: 50px;
+        padding-right: 3.4em;
+        padding-left: 0.7em;
+        width: 100%;
+        z-index: 1;
+    }
+}
+
+input[type=search]:-webkit-autofill,
+input[type=search]:-webkit-autofill:hover, 
+input[type=search]:-webkit-autofill:focus, 
+input[type=search]:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }

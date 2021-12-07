@@ -87,7 +87,7 @@ namespace PM.BazaarCore.Infrastructure.Data.Repositories.Common
 
         public void Update(TEntity item)
         {
-            Context.Update(item);
+            Context.Set<TEntity>().Update(item);            
         }
 
         public Task InsertAsync(TEntity item, CancellationToken cancellationToken = default)

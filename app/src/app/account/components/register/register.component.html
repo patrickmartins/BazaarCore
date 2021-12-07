@@ -1,0 +1,102 @@
+<div class="card ml-auto mr-auto z-depth-0 border border-light animated fadeIn" style="max-width: 400px; margin-top: 8%;">
+    <h4 class="card-header light-blue lighten-1 white-text text-uppercase text-center py-3">Cadastro</h4>    
+    <form [formGroup]="registerForm.formGroup" (ngSubmit)="register()" [disableInputs]="registering" class="card-body" novalidate>
+        <div class="form-group">
+            <label [ngClass]="{'red-text': registerForm.formGroup.controls.name.dirty && registerForm.errors.lastname, 
+							'green-text': registerForm.formGroup.controls.name.dirty && !registerForm.errors.lastname }" for="name">Nome</label> 
+            <div class="input-group">                           
+                <input formControlName="name" name="name" type="text" id="name" 
+					[ngClass]="{'form-control is-invalid d-block': registerForm.errors.name && registerForm.formGroup.controls.name.dirty, 
+								'form-control is-valid d-block': registerForm.errors.name && registerForm.formGroup.controls.name.dirty, 
+								'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="registerForm.formGroup.controls.name.dirty" class="far input-icon" 
+					[ngClass]="{'fa-times-circle red-text': registerForm.errors.name && registerForm.formGroup.controls.name.dirty, 
+								'fa-check-circle green-text': !registerForm.errors.name && registerForm.formGroup.controls.name.dirty }"></i>
+            </div>
+
+            <div *ngIf="registerForm.errors.name && registerForm.formGroup.controls.name.dirty">
+                <div *ngFor="let error of registerForm.errors.name" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label [ngClass]="{'red-text': registerForm.formGroup.controls.lastname.dirty && registerForm.errors.lastname, 
+							'green-text': registerForm.formGroup.controls.lastname.dirty && !registerForm.errors.lastname }" for="lastname">Sobrenome</label> 
+            <div class="input-group">                           
+                <input formControlName="lastname" name="lastname" type="text" id="lastname" 
+					[ngClass]="{'form-control is-invalid d-block': registerForm.errors.lastname && registerForm.formGroup.controls.lastname.dirty, 
+								'form-control is-valid d-block': registerForm.formGroup.controls.lastname.valid && registerForm.formGroup.controls.lastname.dirty, 
+								'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="registerForm.formGroup.controls.lastname.dirty" class="far input-icon" 
+					[ngClass]="{'fa-times-circle red-text': registerForm.errors.lastname, 'fa-check-circle green-text': !registerForm.errors.lastname }"></i>
+            </div>
+
+            <div *ngIf="registerForm.errors.lastname && registerForm.formGroup.controls.lastname.dirty">
+                <div *ngFor="let error of registerForm.errors.lastname" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [ngClass]="{'red-text': registerForm.formGroup.controls.email.dirty && registerForm.errors.email, 
+							'green-text': registerForm.formGroup.controls.email.dirty && !registerForm.errors.email }" for="email">E-mail</label> 
+            <div class="input-group">                           
+                <input formControlName="email" name="email" type="email" id="email" 
+					[ngClass]="{'form-control is-invalid d-block': registerForm.errors.email && registerForm.formGroup.controls.email.dirty, 
+								'form-control is-valid d-block': registerForm.formGroup.controls.email.valid && registerForm.formGroup.controls.email.dirty, 
+								'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="registerForm.formGroup.controls.email.dirty" class="far input-icon" 
+					[ngClass]="{'fa-times-circle red-text': registerForm.errors.email, 'fa-check-circle green-text': !registerForm.errors.email }"></i>
+            </div>
+
+            <div *ngIf="registerForm.errors.email && registerForm.formGroup.controls.email.dirty">
+                <div *ngFor="let error of registerForm.errors.email" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [ngClass]="{'red-text': registerForm.formGroup.controls.password.dirty && registerForm.errors.password, 
+							'green-text': registerForm.formGroup.controls.password.dirty && !registerForm.errors.password }" for="password">Senha</label> 
+            <div class="input-group">                           
+                <input formControlName="password" name="password" type="password" id="password" 
+					[ngClass]="{'form-control is-invalid d-block': registerForm.errors.password && registerForm.formGroup.controls.password.dirty, 
+								'form-control is-valid d-block': registerForm.formGroup.controls.password.valid && registerForm.formGroup.controls.password.dirty, 
+								'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="registerForm.formGroup.controls.password.dirty" class="far input-icon" 
+					[ngClass]="{'fa-times-circle red-text': registerForm.errors.password, 
+								'fa-check-circle green-text': !registerForm.errors.password }"></i>
+            </div>
+
+            <div *ngIf="registerForm.errors.password && registerForm.formGroup.controls.password.dirty">
+                <div *ngFor="let error of registerForm.errors.password" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [ngClass]="{'red-text': registerForm.formGroup.controls.confirmpassword.dirty && registerForm.errors.confirmpassword, 
+							'green-text': registerForm.formGroup.controls.confirmpassword.dirty && !registerForm.errors.confirmpassword }" for="confirmpassword">Confirme sua senha</label> 
+            <div class="input-group">                           
+                <input formControlName="confirmpassword" name="confirmpassword" type="password" id="confirmpassword" 
+					[ngClass]="{'form-control is-invalid d-block': registerForm.errors.confirmpassword && registerForm.formGroup.controls.confirmpassword.dirty, 
+								'form-control is-valid d-block': registerForm.formGroup.controls.confirmpassword.valid && registerForm.formGroup.controls.confirmpassword.dirty, 
+								'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="registerForm.formGroup.controls.confirmpassword.dirty" class="far input-icon" 
+					[ngClass]="{'fa-times-circle red-text': registerForm.errors.confirmpassword, 'fa-check-circle green-text': !registerForm.errors.confirmpassword }"></i>
+            </div>
+
+            <div *ngIf="registerForm.errors.confirmpassword && registerForm.formGroup.controls.confirmpassword.dirty">
+                <div *ngFor="let error of registerForm.errors.confirmpassword" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>                    
+        </div>
+
+        <div class="text-center mt-4">
+            <button mdbBtn mdbWavesEffect color="amber" class="waves-light btn-rounded" type="submit" [disabled]="!registerForm.formGroup.valid || registering">
+                <div *ngIf="registering">
+                    <span class="spinner-border spinner-border-sm mr-2"></span>Cadastrar
+                </div>
+                <div *ngIf="!registering">
+                    Cadastrar
+                </div>
+            </button>
+        </div>
+    </form>
+</div>

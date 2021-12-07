@@ -10,6 +10,8 @@ namespace PM.BazaarCore.Infrastructure.Data.Mappings
         {
             builder.HasKey(u => u.Id);
 
+            builder.Property(c => c.Id).ValueGeneratedNever();
+
             builder.Property(c => c.ClaimType).IsRequired();
             builder.Property(c => c.ClaimValue).IsRequired();
         }

@@ -1,0 +1,95 @@
+<div class="card ml-auto mr-auto z-depth-0 border border-light mt-3 mt-sm-3 mt-sm-0" style="max-width: 400px;">
+
+	<form [formGroup]="changePasswordform.formGroup" (ngSubmit)="changePassword()" [disableInputs]="changingPassword" class="card-body profile-form animated fadeIn" novalidate>
+        <div class="card-up light-blue lighten-1 white-text text-uppercase text-center py-3"><h4>Perfil</h4></div>
+
+        <div class="profile-avatar mx-auto white">
+            <img defaultImage="../assets/img/ring.gif" title="Avatar" [lazyLoad]="loggedUser ? loggedUser.avatarUrl : ''" />
+            <div class="icon-upload amber rounded-circle">
+                <input #pictureFile (change)="openAvatarProfile($event)" type="file" style="display: none" accept="image/*" />
+                <span href="" class="rounded-circle">
+                    <i (click)="pictureFile.click()" class="fa fa-camera"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Nome</label> 
+            <div class="input-group">                           
+                <input disabled name="name" type="text" id="name" class="form-control" value="{{ loggedUser ? loggedUser.name : '' }}">                                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Sobrenome</label> 
+            <div class="input-group">                           
+                <input disabled title="Sobrenome" name="lastname" type="text" id="lastname" class="form-control" value="{{ loggedUser ? loggedUser.lastName : '' }}">                                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name">E-mail</label> 
+            <div class="input-group">                           
+                <input disabled title="E-mail" name="email" type="email" id="email" class="form-control" value="{{ loggedUser ? loggedUser.email : '' }}">                                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [ngClass]="{'red-text': changePasswordform.formGroup.controls.currentpassword.dirty && changePasswordform.errors.currentpassword, 
+								'green-text': changePasswordform.formGroup.controls.currentpassword.dirty && !changePasswordform.errors.currentpassword }" for="password">Senha atual</label> 
+            <div class="input-group">                           
+                <input title="Senha atual" formControlName="currentpassword" name="currentpassword" type="password" id="currentpassword" 
+						[ngClass]="{'form-control is-invalid d-block': changePasswordform.errors.currentpassword && changePasswordform.formGroup.controls.currentpassword.dirty, 
+									'form-control is-valid d-block': changePasswordform.formGroup.controls.currentpassword.valid && changePasswordform.formGroup.controls.currentpassword.dirty, 
+									'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="changePasswordform.formGroup.controls.currentpassword.dirty" class="far input-icon" 
+						[ngClass]="{'fa-times-circle red-text': changePasswordform.errors.currentpassword, 
+									'fa-check-circle green-text': !changePasswordform.errors.currentpassword }"></i>
+            </div>
+
+            <div *ngIf="changePasswordform.errors.currentpassword && changePasswordform.formGroup.controls.currentpassword.dirty">
+                <div *ngFor="let error of changePasswordform.errors.currentpassword" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [ngClass]="{
+				'red-text': changePasswordform.formGroup.controls.password.dirty && changePasswordform.errors.password, 
+				'green-text': changePasswordform.formGroup.controls.password.dirty && !changePasswordform.errors.password }" for="password">Nova senha</label> 
+            <div class="input-group">                           
+                <input formControlName="password" name="password" type="password" id="password" 
+						[ngClass]="{'form-control is-invalid d-block': changePasswordform.errors.password && changePasswordform.formGroup.controls.password.dirty, 
+									'form-control is-valid d-block': changePasswordform.formGroup.controls.password.valid && changePasswordform.formGroup.controls.password.dirty, 
+									'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="changePasswordform.formGroup.controls.password.dirty" class="far input-icon" 
+						[ngClass]="{'fa-times-circle red-text': changePasswordform.errors.password, 'fa-check-circle green-text': !changePasswordform.errors.password }"></i>
+            </div>
+
+            <div *ngIf="changePasswordform.errors.password && changePasswordform.formGroup.controls.password.dirty">
+                <div *ngFor="let error of changePasswordform.errors.password" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [ngClass]="{'red-text': changePasswordform.formGroup.controls.confirmpassword.dirty && changePasswordform.errors.confirmpassword, 
+								'green-text': changePasswordform.formGroup.controls.confirmpassword.dirty && !changePasswordform.errors.confirmpassword }" for="confirmpassword">Confirme a nova senha</label> 
+            <div class="input-group">                           
+                <input formControlName="confirmpassword" name="confirmpassword" type="password" id="confirmpassword" 
+						[ngClass]="{'form-control is-invalid d-block': changePasswordform.errors.confirmpassword && changePasswordform.formGroup.controls.confirmpassword.dirty, 
+						'form-control is-valid d-block': changePasswordform.formGroup.controls.confirmpassword.valid && changePasswordform.formGroup.controls.confirmpassword.dirty, 
+						'form-control': true}" class="form-control">                
+                <i style="z-index: 4;" *ngIf="changePasswordform.formGroup.controls.confirmpassword.dirty" class="far input-icon" 
+						[ngClass]="{'fa-times-circle red-text': changePasswordform.errors.confirmpassword, 
+								'fa-check-circle green-text': !changePasswordform.errors.confirmpassword }"></i>
+            </div>
+
+            <div *ngIf="changePasswordform.errors.confirmpassword && changePasswordform.formGroup.controls.confirmpassword.dirty">
+                <div *ngFor="let error of changePasswordform.errors.confirmpassword" class="invalid-feedback d-block">{{ error.description }}</div>
+            </div>                    
+        </div>
+
+        <div class="text-center mt-4">
+            <button mdbBtn mdbWavesEffect color="amber" class="waves-light btn-rounded" type="submit" ng-disabled="vm.form.$invalid || vm.disable">Alterar</button>
+        </div>
+    </form>
+</div>

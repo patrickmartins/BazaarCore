@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    urlBase: "http://localhost:5000/api/v1/",
+	urlBase: "http://localhost/api/v1/",
     keyToken: "bazaar.token",
 	keyUser: "bazaar.user"
 };

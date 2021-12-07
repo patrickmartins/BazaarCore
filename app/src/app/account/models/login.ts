@@ -1,12 +1,12 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { IModel } from "src/app/common/models/model";
 import { ValidatorWrapper } from "src/app/common/validators/validator-wrapper";
 
 import { FormModel } from "../../common/models/form.model";
 
-export class LoginModel extends FormModel<LoginModel> {
-
-    email: string = '';
-    password: string = '';    
+export class LoginModel extends FormModel<LoginModel> implements IModel<LoginModel> {
+    public email: string = '';
+    public password: string = '';    
 
     public toForm(): FormGroup {
         return new FormBuilder().group({
@@ -27,9 +27,18 @@ export class LoginModel extends FormModel<LoginModel> {
 
         return model;
     }
-}
 
-export class JwtToken {
-    accessToken: string = '';
-    expireIn: Date = new Date();
+	public createNew(params: any): LoginModel | undefined {
+		if(!params)
+			return undefined;
+
+		let model = new LoginModel();
+
+		if(params) {
+			model.email = params.email;
+			model.password = params.password;
+		}
+
+		return model;
+	}
 }

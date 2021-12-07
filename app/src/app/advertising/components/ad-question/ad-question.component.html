@@ -1,0 +1,71 @@
+<div class="d-inline-flex w-100">
+	<img defaultImage="../assets/img/ring.gif" [lazyLoad]="question.user.avatarUrl" class="rounded-circle z-depth-0 mr-2 mr-sm-3 mt-1 d-none d-sm-none d-md-block" alt="avatar image">
+	
+	<div class="w-100">
+		<div class="rounded border border-light p-3 w-100 mb-2 mb-sm-2 speech-bubble left">
+			<div>
+				<h6 class="blue-text d-inline-block font-size-sm font-weight-bold">{{ question.user.name }}</h6>
+				<h6 class="text-black-50 ml-2 d-inline-block float-right font-size-sm" title="{{ question.date | prettyDate:'full' }}">{{ question.date | prettyDate:'elapsed' }}</h6>
+			</div>
+			<span class="m-0">{{ question.description }}</span>
+
+			<a class="float-right amber-text" title="Responder" *ngIf="canAnswer" (click)="openFormAnswer()">
+				<i class="fa fa-reply" aria-hidden="true"></i>
+			</a>
+		</div>
+
+		<div class="d-inline-flex w-100 mb-2 animated fadeInRight" *ngIf="question.response">
+			<div class="w-100 ml-0 ml-sm-3 ml-md-5 blue lighten-5">
+				<div class="rounded border border-light p-3 w-100 speech-bubble right">
+					<div>
+						<h6 class="text-black-50 mr-2 d-inline-block font-size-sm" title="{{ question.response.date | prettyDate:'full' }}">{{ question.response.date | prettyDate:'elapsed' }}</h6>
+						<h6 class="blue-text d-inline-block float-right font-size-sm font-weight-bold">{{ advertiser.name }}</h6>
+					</div>
+					<span class="m-0">{{ question.response.description }}</span>
+				</div>
+			</div>
+
+			<img defaultImage="../assets/img/ring.gif" [lazyLoad]="advertiser.avatarUrl" class="rounded-circle z-depth-0 ml-2 ml-sm-3 mt-1 d-none d-sm-none d-md-block" alt="avatar image">
+		</div>
+
+		<form [formGroup]="formResponse.formGroup" *ngIf="!question.response && formOpened" (ngSubmit)="answer()" class="advertiser d-block mb-3 pb-sm-3 pb-md-0 pb-2" novalidate>
+			<table class="w-100">
+				<tr>
+					<td class="pt-2">
+						<div class="d-inline-flex w-100 flex-column">
+							<img defaultImage="../assets/img/ring.gif" [lazyLoad]="advertiser ? advertiser.avatarUrl : ''" class="rounded-circle z-depth-0 mr-2 mr-sm-3 d-none d-sm-none d-md-block" alt="avatar image">
+						</div>
+					</td>
+					<td class="w-100 pr-2">
+						<div class="mr-2 d-inline-flex w-100 flex-column">
+							<input formControlName="description" name="description" type="text" id="description" 
+								[ngClass]="{'form-control is-invalid d-block': formResponse.errors.description && formResponse.formGroup.controls.description.dirty, 
+									'form-control is-valid d-block': formResponse.errors.description && formResponse.formGroup.controls.description.dirty, 
+									'form-control': true}" class="form-formResponse">
+						</div>
+					</td>
+					<td>
+						<div class="d-inline-flex w-100 flex-column">
+							<button mdbBtn mdbWavesEffect color="amber" class="btn btn-rounded m-0 py-2 px-3 px-md-4 px-lg-5 align-top ask-btn btn-amber waves-effect float-right float-sm-none" type="submit" [disabled]="!formResponse.formGroup.valid || answering">
+								<div *ngIf="answering" class="d-flex">
+									<span class="spinner-border spinner-border-sm mr-2"></span>Responder
+								</div>
+								<div *ngIf="!answering">
+									Responder
+								</div>
+							</button>	
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<div *ngIf="formResponse.errors.description && formResponse.formGroup.controls.description.dirty">
+							<div *ngFor="let error of formResponse.errors.description" class="invalid-feedback d-block">{{ error.description }}</div>
+						</div>		
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>

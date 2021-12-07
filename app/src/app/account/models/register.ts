@@ -1,14 +1,14 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { FormModel } from "src/app/common/models/form.model";
+import { IModel } from "src/app/common/models/model";
 import { ValidatorWrapper } from "src/app/common/validators/validator-wrapper";
 
-export class RegisterModel extends FormModel<RegisterModel> {
-    
-    public name: string = "";
-    public lastName: string = "";
-    public email: string = "";
-    public password: string = "";
-    public confirmPassword: string = "";
+export class RegisterModel extends FormModel<RegisterModel> implements IModel<RegisterModel> {
+    public name!: string;
+    public lastName!: string;
+    public email!: string;
+    public password!: string;
+    public confirmPassword!: string;
 
     public toForm(): FormGroup {
         return new FormBuilder().group({
@@ -44,4 +44,21 @@ export class RegisterModel extends FormModel<RegisterModel> {
 
         return model;
     }
+
+	public createNew(params: any): RegisterModel | undefined {
+		if(!params)
+			return undefined;
+			
+		let model = new RegisterModel();
+
+		if(params) {
+			model.name = params.name;
+			model.lastName = params.lastName;
+			model.email = params.email;	
+			model.password = params.password;
+			model.confirmPassword = params.confirmPassword;
+		}
+
+		return model;
+	}
 }

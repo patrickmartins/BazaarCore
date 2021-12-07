@@ -1,0 +1,42 @@
+@media (min-width: 992px) {
+	.ad-card .image,img {
+		height: 140px;
+	}
+}
+
+@media (min-width: 576px) {
+	.ad-card .image,img {
+		height: 125px;
+	}
+}
+
+@media (min-width: 768px) {
+	.ad-card .image,img {
+		height: 110px;
+	}
+}
+
+@media (min-width: 1183px) {
+	.ad-card {
+		height: 290px;
+	}
+	
+	.ad-card .image,img {
+		height: 140px;
+	}
+}
+
+.ad-card img {
+	object-fit: contain;
+}
+
+.ad-card a:hover {
+	box-shadow: rgb(0 0 0 / 15%) 0px 0px 20px;
+}
+
+.ad-card > a .title {
+	height: 39px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+

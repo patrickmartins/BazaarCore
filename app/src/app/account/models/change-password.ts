@@ -1,13 +1,13 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { FormModel } from "src/app/common/models/form.model";
+import { IModel } from "src/app/common/models/model";
 import { ValidatorWrapper } from "src/app/common/validators/validator-wrapper";
 
-export class ChangePasswordModel extends FormModel<ChangePasswordModel> {
-
-    public currentPassword: string = "";
-    public password: string = "";
-    public confirmPassword: string = "";
+export class ChangePassword extends FormModel<ChangePassword> implements IModel<ChangePassword> {
+    public currentPassword!: string;
+    public password!: string;
+    public confirmPassword!: string;
 
     public toForm(): FormGroup {
         return new FormBuilder().group({
@@ -25,8 +25,8 @@ export class ChangePasswordModel extends FormModel<ChangePasswordModel> {
         });
     }
 
-    public toModel(form: FormGroup): ChangePasswordModel {
-        let model = new ChangePasswordModel();
+    public toModel(form: FormGroup): ChangePassword {
+        let model = new ChangePassword();
 
         model.currentPassword =  form.controls.currentpassword ? form.controls.currentpassword.value : '';
         model.password =  form.controls.password ? form.controls.password.value : '';        
@@ -34,4 +34,19 @@ export class ChangePasswordModel extends FormModel<ChangePasswordModel> {
 
         return model;
     }
+
+	public createNew(params: any): ChangePassword | undefined {
+		if(!params)
+			return undefined;
+
+		let model = new ChangePassword();
+
+		if(params) {
+			model.currentPassword = params.currentPassword;
+			model.password = params.password;
+			model.confirmPassword = params.confirmPassword;	
+		}
+
+		return model;
+	}
 }

@@ -1,0 +1,21 @@
+<div [ngSwitch]="(isAuthenticated && loggedUser !== undefined)">
+    <ul *ngSwitchCase="true" class="navbar-nav nav-flex-icons">
+        <li class="nav-item avatar dropdown" mdbDropdown>
+            <a mdbDropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light menu-login px-2">
+                <h6 class="menu-welcome">Olá, {{ loggedUser ? loggedUser.name : '' }}!</h6>
+                <img defaultImage="../assets/img/ring.gif" [lazyLoad]="loggedUser ? loggedUser.avatarUrl : ''" class="ml-2 rounded-circle z-depth-0 menu-avatar animated fadeIn">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a mdbWavesEffect class="dropdown-item waves-light">Anunciar</a>
+                <a mdbWavesEffect class="dropdown-item waves-light" [routerLink]="['/account/profile']">Minha Conta</a>
+                <a mdbWavesEffect class="dropdown-item waves-light" (click)="logout()">Sair</a>
+            </div>
+        </li>
+    </ul>
+
+    <ul *ngSwitchCase="false" class="navbar-nav">
+        <li class="nav-item">
+            <a style="margin: 4px" class="nav-link waves-light px-2" mdbWavesEffect [routerLink]="['/account/login']">Login</a>
+        </li>
+    </ul>
+</div>

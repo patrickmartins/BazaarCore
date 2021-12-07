@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Factory } from "../common/factories/factory";
+import { IModel } from "../common/models/model";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +11,7 @@ export class LocalStorageHelper {
         localStorage.setItem(key, JSON.stringify(data));
     }
 
-    public getData<TType>(key: string, factory?: Factory<TType>): TType | undefined {
+    public getData<TType>(key: string, returnType?: (new () => IModel<TType>)): TType | undefined {
         let data = localStorage.getItem(key);
 		
 		if(data === null)
@@ -19,8 +19,11 @@ export class LocalStorageHelper {
 
 		let obj = JSON.parse(data);
 		
-		if (factory)
-			return Object.assign(factory.create(), obj);
+		if (returnType) {
+			let entity = new returnType();
+
+			return Object.assign(entity.createNew(obj), obj);
+		}
 
         return obj;
     }

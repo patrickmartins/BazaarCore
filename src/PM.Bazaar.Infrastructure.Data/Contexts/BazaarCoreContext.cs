@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using PM.BazaarCore.Infrastructure.Data.Contexts.Conventions;
 using PM.BazaarCore.Infrastructure.Data.Extensions;
 using PM.BazaarCore.Infrastructure.Data.Mappings;
+using System.IO;
 
 namespace PM.BazaarCore.Infrastructure.Data.Contexts
 {
@@ -30,6 +32,21 @@ namespace PM.BazaarCore.Infrastructure.Data.Contexts
             modelBuilder.ApplyConvention(new UnderscoreAndSeparateTableNameConvention());
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+
+                var connectionString = configuration.GetConnectionString("BazaarCoreConnection");
+
+                optionsBuilder.UseSqlServer(connectionString);
+            }
         }
     }
 }

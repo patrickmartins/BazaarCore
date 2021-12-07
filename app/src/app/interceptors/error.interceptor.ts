@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AccountService } from '../account/services/account.service';
+import { AccountService } from '../shared/services/account.service';
 
 import { Error } from '../common/models/error';
 

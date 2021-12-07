@@ -59,7 +59,7 @@ namespace PM.BazaarCore.Services.WebApi.Models
         /// <summary>
         /// Tipo de ordenação dos anúncios
         /// </summary>
-        [Range(0, 2, ErrorMessage = "Categoria inválida")]
+        [Range(0, 2, ErrorMessage = "Ordem inválida")]
         public int Order { get; set; }
 
         /// <summary>
@@ -70,13 +70,13 @@ namespace PM.BazaarCore.Services.WebApi.Models
         /// <summary>
         /// Palavra chave de busca
         /// </summary>
-        [StringLength(20, MinimumLength = 3, ErrorMessage = "A chave de busca deve conter no mínimo 3 e no máximo 20 caracteres")]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "O termo de pesquisa deve conter no mínimo 3 e no máximo 20 caracteres")]
         public string KeywordSearch { get; set; }
 
         /// <summary>
         /// Número de anúncios por página
         /// </summary>
-        [Range(5, 50, ErrorMessage = "O tamnho da página deve ser no mínimo 5 e no máximo 50")]
+        [Range(5, 50, ErrorMessage = "O tamanho da página deve ser no mínimo 5 e no máximo 50")]
         public int PageSize { get; set; }
 
         public SearchAdModel()
@@ -91,6 +91,11 @@ namespace PM.BazaarCore.Services.WebApi.Models
     /// </summary>
     public class AdDetailedModel
     {
+        /// <summary>
+        /// Identificador do anúncio
+        /// </summary>
+        public Guid Id { get; set; }
+
         /// <summary>
         /// Data de publicação do anúncio
         /// </summary>

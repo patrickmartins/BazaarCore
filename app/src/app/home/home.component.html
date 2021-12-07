@@ -1,0 +1,21 @@
+<div class="row white border border-light mx-sm-0 mx-2 p-3 mb-3 font-size-lg card">
+    <div class="mr-auto ml-auto m-3">
+        <img src="assets/img/logo-blue.png" style="max-width: 250px; width: 100%;" />
+    </div>
+    <p>Bazaar é um projeto de uma aplicação SPA de código aberto desenvolvido com ASP.NET Web API e Angular.</p>
+    <p class="mb-4">O projeto tem como objetivo demonstrar a implementação de algumas das tecnologias e padrões mais usados no mercado e as melhores práticas de desenvolvimento de software.</p>
+</div>
+
+<h5 class="my-4 font-weight-bolder">Esses são nossos últimos anúncios!</h5>
+
+<div class="row" *ngIf="!loadingAds">
+	<div *ngFor="let ad of ads" class="col-lg-3 col-md-4 col-sm-6 mx-2 mb-3 pb-2 mx-sm-0 shadow-3">
+		<ad-card [ad]="ad"></ad-card>
+	</div>	
+</div>
+
+<div class="row" *ngIf="loadingAds">
+	<div *ngFor="let index of [].constructor(12)" class="col-lg-3 col-md-4 col-sm-6 mx-2 mb-3 pb-2 mx-sm-0 shadow-3">		
+		<ad-card-loader></ad-card-loader>
+	</div>	
+</div>

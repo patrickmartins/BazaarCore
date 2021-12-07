@@ -21,7 +21,6 @@ namespace PM.BazaarCore.Domain.Core.Services
 
         public IQueryable<TEntity> Search(ISpecificationQuery<TEntity> specification)
         {
-            Thread.Sleep(15000);
             return Repository.Set().Where(specification.GetExpression());
         }
 

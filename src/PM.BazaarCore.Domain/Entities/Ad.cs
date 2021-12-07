@@ -26,7 +26,11 @@ namespace PM.BazaarCore.Domain.Entities
         public virtual Advertiser Advertiser { get; private set; }
         public virtual Guid IdAdvertiser { get; private set; }
 
-        protected Ad() { }
+        protected Ad() 
+        {
+            _pictures = new HashSet<AdImage>();
+            _questions = new HashSet<Question>();
+        }
 
         public Ad(Guid id, string title, string description, DateTime date, Guid idCategory, double price, Guid idAdvertiser)
         {

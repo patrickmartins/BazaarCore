@@ -1,44 +1,49 @@
 import { FormGroup } from "@angular/forms";
 import { filter } from "rxjs/operators";
 
-import { Factory } from "../factories/factory";
 import { Error } from "../models/error";
 import { FormModel } from "../models/form.model";
 
-export abstract class FormBaseComponent<TModel extends FormModel<TModel>> {
-    public form: FormGroup;
+export class BazaarForm<TModel extends FormModel<TModel>> {
+    public formGroup!: FormGroup;
     public errors: { [source: string]: Error[] } = { };
 
-    private model: TModel;    
+    private model!: TModel;    
     private status: string = "INVALID";
 
-    constructor(private factory: Factory<TModel>) {
-        this.model = this.factory.create();
-        this.form = this.model.toForm();        
+    constructor(modelType: (new () => TModel)) {
+		this.model = new modelType();
+		this.formGroup = this.model.toForm();
 
-        this.form.statusChanges
-                 .pipe(filter((status) => !(this.form.status == "VALID" && this.status == "VALID") && (status == "VALID" || status == "INVALID")))
-                 .subscribe(status => this.onStatusChanges(status));
+		this.subscribeFormStatusChange(this.formGroup);	
     }
 
-    protected getModel(): TModel {
-        return this.model.toModel(this.form);
+	public setModel(model: TModel) {
+		this.model = model;
+		this.formGroup = model.toForm();
+		this.errors = this.getFormValidationErrors(this.formGroup);
+
+		this.subscribeFormStatusChange(this.formGroup);		
+	}
+
+    public getModel(): TModel {
+        return this.model.toModel(this.formGroup);
     }
 
-    protected clearValidationErrors(){
+    public clearValidationErrors(){
         this.errors = { };
     }
 
-    protected addValidationErrors(errors: Error[]) {
+    public addValidationErrors(errors: Error[]) {
         errors.forEach(error => {
             this.addValidationError(error);
         });
     }
 
-    protected addValidationError(error: Error) {
+    public addValidationError(error: Error) {
         let key = error.source.toLowerCase();
 
-        this.setFormValidationErrors(this.form, [error]);
+        this.setFormValidationErrors(this.formGroup, [error]);
 
         if(this.errors[key]) {
             this.errors[key].push(error);
@@ -48,8 +53,18 @@ export abstract class FormBaseComponent<TModel extends FormModel<TModel>> {
         }
     }
 
+	public isValid(): boolean {
+		return this.formGroup.valid;
+	}
+
+	private subscribeFormStatusChange(formGroup: FormGroup) {
+		formGroup.statusChanges
+			.pipe(filter((status) => !(this.formGroup.status == "VALID" && this.status == "VALID") && (status == "VALID" || status == "INVALID")))
+			.subscribe(status => this.onStatusChanges(status));
+	}
+
     private onStatusChanges(status: string) {                
-        this.errors = this.getFormValidationErrors(this.form);
+        this.errors = this.getFormValidationErrors(this.formGroup);
         this.status = status;
     }
 

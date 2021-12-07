@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AdBasicModel } from '../advertising/models/ad-basic';
+import { AdvertisingService } from '../shared/services/advertising.service';
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -8,8 +11,17 @@ import { Component, OnInit } from '@angular/core';
 
 export class HomeComponent implements OnInit {
 
-    constructor() { }
+	public loadingAds: boolean = true;
+	public ads!: AdBasicModel[];
 
-    public ngOnInit(): void { }
-    
+    constructor(private advertisingService: AdvertisingService) { }
+
+    public ngOnInit() {
+		this.advertisingService
+			.getMostRecent(12)
+			.subscribe((result: AdBasicModel[]) => {
+				this.ads = result;
+			})
+			.add(() => this.loadingAds = false);
+	}    
 }
