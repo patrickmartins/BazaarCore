@@ -22,7 +22,7 @@ O projeto tem como objetivo demonstrar a implementação de algumas das tecnolog
 
 ## Front-end
 
-- Angular (Em desenvolvimento)
+- Angular 11
 
 ## Demonstração online
 Veja a documentação da api em <a href="https://bazaarcoreweb.azurewebsites.net/swagger" target="_blank">https://bazaarcoreweb.azurewebsites.net/swagger</a>
