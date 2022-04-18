@@ -25,4 +25,5 @@ O projeto tem como objetivo demonstrar a implementação de algumas das tecnolog
 - Angular 11
 
 ## Demonstração online
-Veja a documentação da api em <a href="https://bazaarcoreweb.azurewebsites.net/swagger" target="_blank">https://bazaarcoreweb.azurewebsites.net/swagger</a>
+<p>Veja a aplicação rodando em <a href="https://bazaarweb-core.azurewebsites.net" target="_blank">https://bazaarweb-core.azurewebsites.net</a></p>
+<p>Veja a documentação da api em <a href="https://bazaarweb-core-api.azurewebsites.net/swagger" target="_blank">https://bazaarweb-core-api.azurewebsites.net/swagger</a></p>
